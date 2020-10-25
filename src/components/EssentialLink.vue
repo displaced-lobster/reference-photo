@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'EssentialLink',
+  name: 'essential-link',
   props: {
     title: {
       type: String,
@@ -45,5 +45,5 @@ export default {
       default: '',
     },
   },
-};
+}
 </script>
