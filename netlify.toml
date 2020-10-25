@@ -1,0 +1,6 @@
+[build]
+    functions = "functions/"
+
+[dev]
+    framework = "quasar"
+    port = 8888
