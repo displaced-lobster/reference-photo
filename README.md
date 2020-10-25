@@ -1,5 +1,7 @@
 # Reference Photo (reference-photo)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e8fd1632-476d-4c39-b113-9670ada02a18/deploy-status)](https://app.netlify.com/sites/romantic-booth-79f8aa/deploys)
+
 Quickly get a random reference photo.
 
 ## Install the dependencies
