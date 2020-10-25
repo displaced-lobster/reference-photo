@@ -1,36 +1,23 @@
 <template>
   <q-page class="flex flex-center">
-    <q-img v-if="imgUrl" contain class="image" :src="imgUrl" />
-    <q-btn color="primary" label="Random Photo" @click="getRandomPhoto" />
+    <q-img v-if="image.src" v-bind="image" contain class="image" />
   </q-page>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'page-index',
-  data() {
-    return {
-      imgUrl: undefined,
-    }
+  computed: {
+    ...mapState('image', ['image'])
   },
-  methods: {
-    async getRandomPhoto() {
-      try {
-        const response = await this.$api.getRandomPhoto()
-
-        this.imgUrl = response.urls.regular
-      }
-      catch (error) {
-        console.error(error)
-      }
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 .image {
+  max-height: calc(100vh - 5rem);
   max-width: 100vw;
-  max-height: 90vh;
 }
 </style>

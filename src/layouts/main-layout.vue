@@ -1,21 +1,21 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-toolbar-title>
-          Reference Photo
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-header>
-
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-footer class="text-center">
+      <q-btn color="white" flat label="Random Photo" @click="getRandomPhoto" />
+    </q-footer>
   </q-layout>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'main-layout',
+  methods: {
+    ...mapActions('image', ['getRandomPhoto'])
+  }
 }
 </script>
