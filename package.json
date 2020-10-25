@@ -16,7 +16,9 @@
     "core-js": "^3.6.5",
     "eslint-import-resolver-webpack": "^0.13.0",
     "husky": "^4.3.0",
-    "quasar": "^1.0.0"
+    "node-fetch": "^2.6.1",
+    "quasar": "^1.0.0",
+    "unsplash-js": "^6.3.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
