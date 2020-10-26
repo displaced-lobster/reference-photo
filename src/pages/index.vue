@@ -1,6 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <q-img v-if="image.src" v-bind="image" contain class="image" />
+    <q-icon v-else color="secondary" name="far fa-images" size="xl" />
   </q-page>
 </template>
 
