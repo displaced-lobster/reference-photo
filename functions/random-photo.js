@@ -6,7 +6,7 @@ global.fetch = fetch
 
 const headers = { 'Content-Type': 'application/json' }
 
-exports.handler = async function () {
+exports.handler = async function (event) {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY
 
   if (!accessKey) {
@@ -17,11 +17,10 @@ exports.handler = async function () {
     }
   }
 
+  const query = event.queryStringParameters.search
   const unsplash = new Unsplash({ accessKey })
-
   let error = ''
-
-  const body = await unsplash.photos.getRandomPhoto().then(toJson).catch(err => { error = err })
+  const body = await unsplash.photos.getRandomPhoto({ query }).then(toJson).catch(err => { error = err })
 
   if (error) {
     return {

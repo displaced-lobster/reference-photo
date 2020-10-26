@@ -4,5 +4,6 @@ import Vue from 'vue'
 const functionsBase = '.netlify/functions/'
 
 Vue.prototype.$api = {
-  getRandomPhoto: () => axios.get(`${functionsBase}random-photo`).then(response => response.data)
+  getRandomPhoto: ({ search } = {}) => axios.get(`${functionsBase}random-photo`, { params: { search } })
+    .then(response => response.data)
 }
