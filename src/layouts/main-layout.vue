@@ -3,14 +3,14 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer class="text-center q-pa-xs">
+    <q-footer class="bg-secondary q-pa-xs">
       <div class="row justify-evenly">
         <q-input v-model.trim="search" dark dense standout @keydown.enter="searchRandomPhoto">
           <template v-slot:after>
-            <q-btn flat color="white" icon="fas fa-random" @click="getRandomPhoto" />
+            <q-btn flat color="primary" icon="fas fa-random" @click="getRandomPhoto" />
           </template>
           <template v-slot:before>
-            <q-btn flat color="white" icon="fas fa-search" @click="searchRandomPhoto" />
+            <q-btn flat color="primary" icon="fas fa-search" @click="searchRandomPhoto" />
           </template>
         </q-input>
       </div>
