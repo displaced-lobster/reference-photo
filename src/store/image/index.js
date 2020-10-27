@@ -1,10 +1,10 @@
 import state from './state'
-import setImage from './mutations'
+import * as mutations from './mutations'
 import getRandomPhoto from './actions'
 
 export default {
   namespaced: true,
+  actions: { getRandomPhoto },
+  mutations,
   state,
-  mutations: { setImage },
-  actions: { getRandomPhoto }
 }
