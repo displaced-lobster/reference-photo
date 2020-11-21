@@ -2,8 +2,8 @@
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
       <router-view />
-      <q-page-sticky position="bottom-left" :offset="[5, 200]">
-        <q-list separator class="bg-primary control-btns q-gutter-y-sm">
+      <div class="control-btns">
+        <q-list separator class="bg-primary q-gutter-y-sm" style="border-radius: 10px">
           <q-item clickable>
             <q-item-section avatar>
               <q-icon color="secondary" name="fas fa-search" />
@@ -37,7 +37,7 @@
             </q-item-section>
           </q-item>
         </q-list>
-      </q-page-sticky>
+      </div>
     </q-page-container>
 
     <q-drawer v-model="historyDrawer" dark content-class="bg-primary" side="right">
@@ -79,7 +79,9 @@ export default {
 
 <style lang="scss" scoped>
 .control-btns {
-  border-radius: 10px;
+  bottom: 20vh;
+  left: 5px;
+  position: absolute;
   width: 55px;
 }
 
