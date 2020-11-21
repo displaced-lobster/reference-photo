@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 .image {
-  max-height: calc(100vh - 5rem);
+  max-height: 100vh;
   max-width: 100vw;
 }
 </style>

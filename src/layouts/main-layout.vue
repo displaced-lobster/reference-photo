@@ -2,6 +2,42 @@
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
       <router-view />
+      <q-page-sticky position="bottom-left" :offset="[5, 200]">
+        <q-list separator class="bg-primary control-btns q-gutter-y-sm">
+          <q-item clickable>
+            <q-item-section avatar>
+              <q-icon color="secondary" name="fas fa-search" />
+              <q-popup-edit v-model="searchInput" content-class="bg-secondary">
+                <q-input
+                  v-model.trim="search"
+                  autofocus
+                  dark
+                  dense
+                  standout
+                  placeholder="Search"
+                  @keydown.enter="searchRandomPhoto"
+                >
+                  <template v-slot:after>
+                    <q-btn flat color="primary" icon="fas fa-search" @click="searchRandomPhoto" />
+                  </template>
+                </q-input>
+              </q-popup-edit>
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable @click="getRandomPhoto">
+            <q-item-section avatar>
+              <q-icon color="secondary" name="fas fa-random" />
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable @click="historyDrawer = !historyDrawer">
+            <q-item-section avatar>
+              <q-icon color="secondary" name="fas fa-history" />
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-page-sticky>
     </q-page-container>
 
     <q-drawer v-model="historyDrawer" dark content-class="bg-secondary" side="right">
@@ -9,21 +45,6 @@
         <q-img class="history-img" :src="image.thumb" @click="setImage(image)" />
       </q-card>
     </q-drawer>
-
-    <q-footer class="bg-secondary q-pa-xs">
-      <div class="row justify-evenly">
-        <q-input v-model.trim="search" dark dense standout @keydown.enter="searchRandomPhoto">
-          <template v-slot:after>
-            <q-btn flat color="primary" icon="fas fa-random" @click="getRandomPhoto" />
-          </template>
-          <template v-slot:before>
-            <q-btn flat color="primary" icon="fas fa-search" @click="searchRandomPhoto" />
-          </template>
-        </q-input>
-      </div>
-
-      <q-btn flat class="history-btn" color="primary" icon="fas fa-history" @click="historyDrawer = !historyDrawer" />
-    </q-footer>
   </q-layout>
 </template>
 
@@ -36,6 +57,7 @@ export default {
     return {
       historyDrawer: false,
       search: '',
+      searchInput: false,
     }
   },
   computed: {
@@ -47,6 +69,8 @@ export default {
     searchRandomPhoto() {
       if (this.search && this.search.length >= 3) {
         this.getRandomPhoto({ search: this.search })
+        this.search = ''
+        this.searchInput = false
       }
     }
   }
@@ -54,6 +78,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.control-btns {
+  border-radius: 10px;
+  width: 55px;
+}
+
 .history-btn {
   position: absolute;
   right: 1rem;
