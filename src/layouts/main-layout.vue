@@ -40,8 +40,8 @@
       </q-page-sticky>
     </q-page-container>
 
-    <q-drawer v-model="historyDrawer" dark content-class="bg-secondary" side="right">
-      <q-card v-for="image in history" flat class="bg-secondary" :key="image.id">
+    <q-drawer v-model="historyDrawer" dark content-class="bg-primary" side="right">
+      <q-card v-for="image in history" flat class="bg-primary" :key="image.id">
         <q-img class="history-img" :src="image.thumb" @click="setImage(image)" />
       </q-card>
     </q-drawer>
