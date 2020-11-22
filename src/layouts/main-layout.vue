@@ -22,12 +22,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.control-btns {
-  bottom: 25vh;
-  left: 5px;
-  position: absolute;
-  width: 55px;
-}
-</style>

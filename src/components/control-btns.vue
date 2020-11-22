@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="control-btns">
     <q-list separator class="bg-primary q-gutter-y-sm" style="border-radius: 10px">
       <q-item clickable>
         <q-item-section avatar>
@@ -19,6 +19,12 @@
               </template>
             </q-input>
           </q-popup-edit>
+        </q-item-section>
+      </q-item>
+
+      <q-item clickable :disabled="previousSearch.length < 3" @click="nextRandomPhoto">
+        <q-item-section avatar>
+          <q-icon color="secondary" name="fas fa-forward" />
         </q-item-section>
       </q-item>
 
@@ -57,6 +63,7 @@ export default {
   data() {
     return {
       fullscreen: false,
+      previousSearch: '',
       search: '',
       searchInput: false,
     }
@@ -78,9 +85,15 @@ export default {
   },
   methods: {
     ...mapActions('image', ['getRandomPhoto']),
+    nextRandomPhoto() {
+      if (this.previousSearch && this.previousSearch.length >= 3) {
+        this.getRandomPhoto({ search: this.previousSearch })
+      }
+    },
     searchRandomPhoto() {
       if (this.search && this.search.length >= 3) {
         this.getRandomPhoto({ search: this.search })
+        this.previousSearch = this.search
         this.search = ''
         this.searchInput = false
       }
@@ -96,3 +109,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.control-btns {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 55px;
+}
+</style>
