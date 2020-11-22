@@ -36,6 +36,12 @@
               <q-icon color="secondary" name="fas fa-history" />
             </q-item-section>
           </q-item>
+
+          <q-item clickable @click="toggleFullscreen">
+            <q-item-section avatar>
+              <q-icon color="secondary" :name="fullscreenIcon" />
+            </q-item-section>
+          </q-item>
         </q-list>
       </div>
     </q-page-container>
@@ -55,13 +61,17 @@ export default {
   name: 'main-layout',
   data() {
     return {
+      fullscreen: false,
       historyDrawer: false,
       search: '',
       searchInput: false,
     }
   },
   computed: {
-    ...mapState('image', ['history'])
+    ...mapState('image', ['history']),
+    fullscreenIcon() {
+      return this.fullscreen ? 'fas fa-compress-arrows-alt' : 'fas fa-expand-arrows-alt'
+    }
   },
   methods: {
     ...mapActions('image', ['getRandomPhoto']),
@@ -72,6 +82,14 @@ export default {
         this.search = ''
         this.searchInput = false
       }
+    },
+    toggleFullscreen() {
+      if (this.fullscreen) {
+        this.$q.fullscreen.exit().then(() => { this.fullscreen = false })
+      }
+      else {
+        this.$q.fullscreen.request().then(() => { this.fullscreen = true })
+      }
     }
   }
 }
@@ -79,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .control-btns {
-  bottom: 20vh;
+  bottom: 25vh;
   left: 5px;
   position: absolute;
   width: 55px;
