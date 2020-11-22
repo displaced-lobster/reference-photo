@@ -1,6 +1,6 @@
 <template>
   <q-drawer v-model="localValue" dark content-class="bg-primary" side="right">
-    <q-card v-for="image in history" flat class="bg-primary" :key="image.id">
+    <q-card v-for="image in history" flat class="bg-primary q-pr-sm" :key="image.id">
       <q-img class="history-img" :src="image.thumb" @click="setImage(image)" />
     </q-card>
   </q-drawer>
